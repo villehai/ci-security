@@ -31,6 +31,7 @@ In local git:
 1. Use `git push --force` to rewrite remote history
 
 ⚠⚠⚠ This will rewrite history of remote branch which will affect anyone else working with the repository ⚠⚠⚠
+
 ⚠⚠⚠ This will also hijack all commits to your name ⚠⚠⚠
 
 ## Links
