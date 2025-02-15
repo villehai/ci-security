@@ -1,0 +1,14 @@
+name: Lab01 
+run-name: Lab01 - ${{ github.actor }} is testing out GH actions. This should be run on every push 🚀
+permissions: read-all
+on: push
+
+env: 
+  MY_VARIABLE: Hello, GitHub Actions!
+
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: This should post the content of the variable
+        run: echo "Does it say $MY_VARIABLE"
