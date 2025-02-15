@@ -30,6 +30,8 @@ jobs:
     call-greeter:
       # this works only if its in the same repository
       uses: ./.github/workflows/greeter.yml
+      with:
+        person-name: "${{ github.actor }}"
 
 
 
