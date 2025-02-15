@@ -1,0 +1,12 @@
+name: Lab00 test v3
+run-name: Lab00 - ${{ github.actor }} is testing out GH actions. This should be run on every push 🚀
+permissions: read-all
+on: push
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run hello world part 3
+        run: echo "step of the job ${{ runner.os }}!"
+      - name: Tell me the branch and repo name
+        run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
