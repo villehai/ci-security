@@ -1,0 +1,11 @@
+name: Lab00 Hello GH actions by Kirka
+run-name: Lab00 - ${{ github.actor }} is testing out GitHub Actions. Does this compute? 🚀
+permissions: read-all
+on:
+  workflow_dispatch:
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run hello world
+        run: echo "oispa kaljaa. 🎉 Step of the job is running on ${{ runner.os }}!"
