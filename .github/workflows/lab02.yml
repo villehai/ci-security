@@ -1,0 +1,30 @@
+name: Lab02 
+run-name: Lab02 - ${{ github.actor }} is learning how to use Composite Actions and publishing artifacts
+permissions: read-all
+on:
+  workflow_dispatch:
+
+
+jobs:
+  call-composite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Run the template
+      - id: dotnet-build
+        uses: .github/actions/build-dotnet-app
+        with:
+          folder-path: "apps/uptodate-app"
+
+
+      #Publish output folder as an artifact
+      - name: Publish artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dotnet-app
+          path: ${{ steps.dotnet-build.outputs.output-directory-path }}
+
+
+      
