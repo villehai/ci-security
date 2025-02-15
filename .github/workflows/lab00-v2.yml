@@ -1,0 +1,13 @@
+name: Lab00 another test
+run-name: Lab00 - ${{ github.actor }} is testing out GH actions. Hello? 🚀
+permissions: read-all
+on:
+  workflow_dispatch:
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run hello world part 2
+        run: echo "step of the job ${{ runner.os }}!"
+      - name: Tell me the branch and repo name
+        run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
