@@ -1,0 +1,58 @@
+name: Lab10
+run-name: Lab10 - ${{ github.actor }} is learning how to use SCA tools
+permissions: read-all
+
+defaults:
+  run:
+    shell: pwsh
+
+on:
+  # Make it possible to manually run this workflow
+  workflow_dispatch:
+
+  # Dependency review is meant to work with prs
+  pull_request:
+
+
+jobs:
+  dependencycheck:
+    runs-on: ubuntu-latest
+    name: dependency-check
+    steps:
+      # Checkout the git repo
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Ensure proper vers of dotnet
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
+      # Install dotnet dependencies
+      - name: Install dotnet dependencies
+        run: dotnet restore
+      # Build the app
+      - name: Build app
+        run: dotnet build
+      # Run Dependency Check
+      - name: Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        with:
+          project: "ci-security"
+          path: "."
+          format: "HTML"
+          out: "reports"
+          args: >
+            --failOnCVSS 7
+            --enableRetired
+
+      # Upload test results
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        if: ${{ always() }}
+        with:
+           name: Depcheck report
+           path: ${{github.workspace}}/reports
+
+
+      
