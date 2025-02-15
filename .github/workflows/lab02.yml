@@ -26,5 +26,12 @@ jobs:
           name: dotnet-app
           path: ${{ steps.dotnet-build.outputs.output-directory-path }}
 
+  greeter:
+    call-greeter:
+      # this works only if its in the same repository
+      uses: ./.github/workflows/greeter.yml
+
+
+
 
       
