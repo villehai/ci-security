@@ -1,5 +1,5 @@
 name: Lab01 
-run-name: Lab01 - ${{ github.actor }} is testing out GH actions. This should be run on every push 🚀
+run-name: Lab01 - ${{ github.actor }} is testing variables and secrets. This should be run on every push 🚀
 permissions: read-all
 on: push
 
@@ -12,3 +12,10 @@ jobs:
     steps:
       - name: This should post the content of the variable
         run: echo "Does it say $MY_VARIABLE"
+      - name: This should not post the secret
+        DEMO_SECRET: ${{ DEMO_SECRET }}
+        run: |
+         echo "My secret is: $DEMO_SECRET"
+         echo "but it should not be printed"
+
+
